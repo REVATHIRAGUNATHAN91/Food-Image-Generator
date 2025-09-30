@@ -77,19 +77,19 @@ if prompt:
     with st.chat_message("assistant"):
         st.markdown(f"🍳 Generating image for: **{prompt}**")
 
-        with st.spinner("🖼️ Creating your food image..."):
+        with st.spinner(" Creating your food image..."):
             image, response_text, latency = generate_food_image(prompt)
 
         if image:
-            st.success("✅ Image generated successfully!")
+            st.success(" Image generated successfully!")
             st.image(image, caption=f"Generated image for: {prompt}", use_column_width=True)
             confidence = get_confidence_rating(prompt, latency)
             report = f"""
-            **📊 Performance Report:**
-            - ⏱️ **Latency:** {latency:.2f} seconds
-            - 🎯 **Accuracy Confidence:** {confidence}%
-            - 🌍 **Cuisine Support:** All global cuisines
-            - ✅ **Status:** Successfully processed
+            ** Performance Report:**
+            -  **Latency:** {latency:.2f} seconds
+            -  **Accuracy Confidence:** {confidence}%
+            -  **Cuisine Support:** All global cuisines
+            -  **Status:** Successfully processed
             """
             st.markdown(report)
             st.session_state.messages.append({
@@ -100,7 +100,7 @@ if prompt:
                 "report": report
             })
         else:
-            error_msg = f"❌ Error: {response_text}"
+            error_msg = f" Error: {response_text}"
             st.error(error_msg)
             st.session_state.messages.append({
                 "role": "assistant",
@@ -109,7 +109,7 @@ if prompt:
 
 # Sidebar
 with st.sidebar:
-    st.header("🌍 Supported Cuisines")
+    st.header(" Supported Cuisines")
     st.write("""
     **தமிழ்:** சாம்பார், ரசம், பிரியாணி
     **North Indian:** Butter Chicken, Naan
@@ -121,14 +121,14 @@ with st.sidebar:
     **African:** Jollof Rice, Couscous, Tagine
     """)
 
-    st.header("💡 Tips for Best Results")
+    st.header(" Tips for Best Results")
     st.write("""
     1. Be specific: "A delicious Chicken Biriyani with Raita"
     2. Include details: "Idly with Sambar and Chutney on a banana leaf"
     3. Mention style: "Authentic Chennai Style Biriyani in a clay pot"
     """)
 
-    if st.button("🗑️ Clear Chat History"):
+    if st.button(" Clear Chat History"):
         st.session_state.messages = []
         st.rerun()
 
